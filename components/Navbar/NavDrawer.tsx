@@ -71,23 +71,15 @@ export default function TemporaryDrawer() {
         </IconButton>
       </DrawerHeader>
       <List>
-        {links.map((category, index) => (
+        {links.map((link, index) => (
           <Link
             key={index}
-            title={category.name}
-            href={
-              category.name === 'Tüm Ürünler'
-                ? '/products'
-                : '/products/category/' + category.endpoint
-            }
+            title={link.name}
+            href={link.endpoint}
             className={
-              category.name === 'Tüm Ürünler'
-                ? `${router.asPath === `/products` ? 'text-green-500' : ''}`
-                : `${
-                    router.asPath === `/products/category/${category.endpoint}`
-                      ? 'text-green-500 '
-                      : ''
-                  }`
+              navigator.userAgent.includes(`/${link.endpoint}`)
+                ? 'text-green-500 '
+                : ''
             }
           >
             <ListItem
@@ -99,7 +91,7 @@ export default function TemporaryDrawer() {
               disablePadding
             >
               <ListItemButton>
-                <ListItemText primary={category.name} />
+                <ListItemText primary={link.name} />
               </ListItemButton>
             </ListItem>
           </Link>
