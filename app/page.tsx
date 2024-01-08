@@ -1,5 +1,6 @@
 'use client';
 import Navbar from '@/components/Navbar';
+import { Button } from '@nextui-org/react';
 import React from 'react';
 
 const HomePage: React.FC = () => {
@@ -7,9 +8,25 @@ const HomePage: React.FC = () => {
     <div className='font-sans bg-gray-100'>
       <Navbar />
       {/* Banner Section */}
-      <section className='py-12 bg-white text-center relative h-screen'>
-        <h2 className='text-3xl font-semibold  mb-4'>Potential Matches</h2>
-        <div className='flex justify-end items-end w-full relative ml-[50%] group'>
+      <section className='py-12 px-16 lg:px-20 flex flex-col lg:flex-row justify-center items-center lg:items-center bg-white text-center relative h-screen'>
+        <div className=''>
+          <div className='text-3xl tracking-wider'>Find your love</div>
+          <div className='text-5xl tracking-wider'>By Being</div>
+          <div className='text-6xl'>Yourself</div>
+
+          <Button
+            radius='full'
+            className='bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg py-4 px-6 rounded-full text-xl tracking-widest mt-4'
+          >
+            Your Love
+          </Button>
+        </div>
+        {/* <img
+          className='absolute w-[40%] mt-32 z-10 bg-transparent'
+          src='/Vector 1.svg'
+          alt=''
+        /> */}
+        <div className='w-full relative ml-[8%] lg:ml-[30%] mt-[20%] lg:-mt-[40%] group'>
           {/* Card 1 */}
           <div
             className='w-48 bg-orange-500 rounded-2xl overflow-hidden shadow-lg absolute top-0 left-0 -rotate-6 border-4 border-orange-500
@@ -17,12 +34,13 @@ const HomePage: React.FC = () => {
             style={{ zIndex: 3 }}
           >
             <img
-              src='https://via.placeholder.com/400'
+              src='/Online dating-rafiki.png'
               alt='User 1'
-              className='w-full h-60 object-cover rounded-2xl'
+              className='w-full h-60 object-cover bg-white rounded-2xl'
+              loading='lazy'
             />
             <div className='p-4'>
-              <p className='text-gray-600'>Find Your Love</p>
+              <p className='text-white'>Find Your Love</p>
             </div>
           </div>
           {/* Card 2 */}
@@ -32,12 +50,12 @@ const HomePage: React.FC = () => {
             style={{ zIndex: 2 }}
           >
             <img
-              src='https://via.placeholder.com/400'
+              src='/d2.jpg'
               alt='User 2'
               className='w-full h-60 object-cover rounded-2xl'
             />
             <div className='p-4'>
-              <p className='text-gray-600'>Made with Love</p>
+              <p className='text-white'>Made with Love</p>
             </div>
           </div>
           {/* Card 3 */}
@@ -47,16 +65,15 @@ const HomePage: React.FC = () => {
             style={{ zIndex: 1 }}
           >
             <img
-              src='https://via.placeholder.com/400'
+              src='/d3.png'
               alt='User 3'
-              className='w-full h-60 object-cover rounded-2xl'
+              className='w-full h-60 object-cover bg-white rounded-2xl'
             />
             <div className='p-4'>
-              <p className='text-gray-600'>Meet People</p>
+              <p className='text-white'>Meet People</p>
             </div>
           </div>
         </div>
-        <p className='mt-4 text-gray-600'>Explore more potential matches...</p>
       </section>
 
       {/* Hero Section */}
