@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 import { Button } from '@nextui-org/react';
 
 import { useRouter } from 'next/navigation';
-import { firstCharacterUpper } from '@/util/utilfunctions';
 
 const links = [
   {
@@ -32,7 +31,9 @@ const NavLink = () => {
               title={category.name}
               href={'/products/'}
               className={`text-xs lg:text-base capitalize  ${
-                router.asPath === `/products` ? 'text-green-500' : ''
+                navigator.userAgent.includes('/products')
+                  ? 'text-green-500'
+                  : ''
               } `}
             >
               <span className='hover:text-green-500 capitalize '>
@@ -48,7 +49,7 @@ const NavLink = () => {
               href={category.endpoint}
               className={`text-xs lg:text-base pr-8 capitalize 
               ${
-                router.asPath === `/${category.endpoint}`
+                navigator.userAgent.includes(`/${category.endpoint}`)
                   ? 'text-green-500'
                   : ''
               }`}
