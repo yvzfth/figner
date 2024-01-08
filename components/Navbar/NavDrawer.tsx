@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { styled, useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const links = [
   {
@@ -29,6 +29,7 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 import { useState } from 'react';
 export default function TemporaryDrawer() {
   const router = useRouter();
+  const currentPage = usePathname();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -77,9 +78,7 @@ export default function TemporaryDrawer() {
             title={link.name}
             href={link.endpoint}
             className={
-              window?.navigator?.userAgent.includes(`/${link.endpoint}`)
-                ? 'text-green-500 '
-                : ''
+              currentPage === `/${link.endpoint}` ? 'text-green-500 ' : ''
             }
           >
             <ListItem

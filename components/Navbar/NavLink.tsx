@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { Button } from '@nextui-org/react';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const links = [
   {
@@ -20,7 +20,7 @@ const links = [
 
 const NavLink = () => {
   const router = useRouter();
-
+  const currentPage = usePathname();
   return (
     <div className='capitalize m-2'>
       {links.map((category, i) => {
@@ -31,9 +31,7 @@ const NavLink = () => {
               title={category.name}
               href={'/products/'}
               className={`text-xs lg:text-base capitalize  ${
-                window?.navigator?.userAgent.includes('/products')
-                  ? 'text-green-500'
-                  : ''
+                currentPage === '/products' ? 'text-green-500' : ''
               } `}
             >
               <span className='hover:text-green-500 capitalize '>
@@ -49,9 +47,7 @@ const NavLink = () => {
               href={category.endpoint}
               className={`text-xs lg:text-base pr-8 capitalize 
               ${
-                window?.navigator?.userAgent.includes(`/${category.endpoint}`)
-                  ? 'text-green-500'
-                  : ''
+                currentPage === `/${category.endpoint}` ? 'text-green-500' : ''
               }`}
             >
               <span className='hover:text-green-500 capitalize transition-colors'>
