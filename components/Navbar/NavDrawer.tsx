@@ -77,7 +77,7 @@ export default function TemporaryDrawer() {
             title={link.name}
             href={link.endpoint}
             className={
-              navigator.userAgent.includes(`/${link.endpoint}`)
+              window?.navigator?.userAgent.includes(`/${link.endpoint}`)
                 ? 'text-green-500 '
                 : ''
             }

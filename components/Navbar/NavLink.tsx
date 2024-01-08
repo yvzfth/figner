@@ -31,7 +31,7 @@ const NavLink = () => {
               title={category.name}
               href={'/products/'}
               className={`text-xs lg:text-base capitalize  ${
-                navigator.userAgent.includes('/products')
+                window?.navigator?.userAgent.includes('/products')
                   ? 'text-green-500'
                   : ''
               } `}
@@ -49,7 +49,7 @@ const NavLink = () => {
               href={category.endpoint}
               className={`text-xs lg:text-base pr-8 capitalize 
               ${
-                navigator.userAgent.includes(`/${category.endpoint}`)
+                window?.navigator?.userAgent.includes(`/${category.endpoint}`)
                   ? 'text-green-500'
                   : ''
               }`}
