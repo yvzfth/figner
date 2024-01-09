@@ -5,7 +5,6 @@ import { PrismaClient } from "@prisma/client";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-const prisma = new PrismaClient();
 
 const SignUp = () => {
   const router = useRouter();
@@ -39,10 +38,8 @@ const SignUp = () => {
     }).then((res) => {
       if (res.status == 200) {
         toast.success("Kayıt oluşturdu");
-        new Promise((resolve) => setTimeout(resolve, 500)).then(() => {
-          router.push("/");
-          //   setIsSignIn(true);
-        });
+        router.push("/");
+        //   setIsSignIn(true);
       }
     });
     // Reset form after submission
