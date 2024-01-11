@@ -13,17 +13,17 @@ model User {
   id             Int           @id @default(autoincrement())
   firstName      String
   lastName       String
-  dateOfBirth    DateTime
-  gender         String
+  dateOfBirth    DateTime?
+  gender         String?
   email          String        @unique
   password       String
-  profilePicture String
+  profilePicture String?
   interests      Interest[]
   hobbies        Hobby[]
-  relationship   String
-  occupation     String
-  education      String
-  location       String
+  relationship   String?
+  occupation     String?
+  education      String?
+  location       String?
   bio            String?
   Subscription   Subscription?
   // Define the relation to PrivateMessage table for sent messages
