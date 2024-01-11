@@ -7,11 +7,85 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// User model
+// User model
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  lastname String
-  email    String @unique
-  password String
+  id             Int           @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  dateOfBirth    DateTime
+  gender         String
+  email          String        @unique
+  password       String
+  profilePicture String
+  interests      Interest[]
+  hobbies        Hobby[]
+  relationship   String
+  occupation     String
+  education      String
+  location       String
+  bio            String?
+  Subscription   Subscription?
+  // Define the relation to PrivateMessage table for sent messages
+  SentMessages   Message[]     @relation("SentMessages")
+
+  // Define the relation to PrivateMessage table for received messages
+  ReceivedMessages Message[] @relation("ReceivedMessages")
+
+  @@map("users")
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  content    String
+  status     String // You can refine this field based on your specific requirements
+  createdAt  DateTime @default(now())
+
+  // Define the relation to User table for the sender
+  sender User @relation("SentMessages", fields: [senderId], references: [id])
+
+  // Define the relation to User table for the receiver
+  receiver User @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}
+
+model Interest {
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    @unique
+}
+
+model Hobby {
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    @unique
+}
+
+// Subscription model
+model Subscription {
+  id        Int                @id @default(autoincrement())
+  userId    Int                @unique
+  plan      SubscriptionPlan   @default(Basic) // Basic, Standard, Premium, etc.
+  status    SubscriptionStatus @default(Active) // Active, Expired, Canceled, etc.
+  expiresAt DateTime
+  createdAt DateTime           @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("subscriptions")
+}
+
+// LiveStream model
+
+enum SubscriptionStatus {
+  Active
+  Expired
+  Canceled
+}
+
+enum SubscriptionPlan {
+  Basic
+  Gold
+  Premium
 }

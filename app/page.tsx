@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
           {/* Card 1 */}
           <div
             className='w-48 bg-orange-500 rounded-2xl overflow-hidden shadow-lg absolute top-0 left-0 -rotate-6 border-4 border-orange-500
-              transition-transform duration-300  group-hover:rotate-0 group-hover:-translate-x-36 group-hover:translate-y-10'
+              transition-transform duration-300  group-hover:rotate-0 group-hover:-translate-x-36 group-hover:translate-y-10 hover:scale-105'
             style={{ zIndex: 3 }}
           >
             <img
@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
           {/* Card 2 */}
           <div
             className='w-48 rounded-2xl overflow-hidden shadow-lg absolute top-10 left-16 border-4 border-rose-500 bg-rose-500
-              transition-transform duration-300 '
+              transition-transform duration-300 hover:scale-105'
             style={{ zIndex: 2 }}
           >
             <img
@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
           {/* Card 3 */}
           <div
             className='w-48 rounded-2xl overflow-hidden shadow-lg absolute top-20 left-32 rotate-6 border-4 border-purple-500 bg-purple-500
-              transition-transform duration-300 group-hover:rotate-0 group-hover:translate-x-36 group-hover:-translate-y-10'
+              transition-transform duration-300 group-hover:rotate-0 group-hover:translate-x-36 group-hover:-translate-y-10 hover:scale-105'
             style={{ zIndex: 1 }}
           >
             <img
