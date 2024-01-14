@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/lib/user/userSlice";
 
 const Login = () => {
+  // Assuming you're using React and Redux, you can get access to the dispatch function like this:
+  const dispatch = useDispatch();
   const router = useRouter();
   // State to manage form inputs
   const [formData, setFormData] = useState({
@@ -25,24 +29,32 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // Implement logic for form submission (e.g., API call, validation)
 
-    await fetch("/api/user/login", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success("Successfully logged in");
-          new Promise((resolve) => setTimeout(resolve, 500)).then(() => {
-            router.push("/");
-            //   setIsSignIn(true);
-          });
-        }
-      })
-      .catch((error) => {
-        toast.error("Failed to logged in");
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+
+      if (response.status === 200) {
+        const userData = await response.json();
+        // Dispatch an action to update the user state in Redux
+        dispatch(setUser(userData)); // Replace with your actual action and payload
+
+        toast.success("Successfully logged in");
+        new Promise((resolve) => setTimeout(resolve, 500)).then(() => {
+          router.push("/");
+        });
+      } else {
+        toast.error("Failed to log in");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      toast.error("An error occurred while logging in");
+    }
   };
 
   return (
